@@ -9,6 +9,7 @@ module "lambda" {
   function_name = coalesce(var.function_name, "${var.bucket_name}-to-cloudwatch-logs")
   handler       = "lambda.handler"
   runtime       = "python3.7"
+  memory_size   = var.memory_size
 
   # Build the package from the source directory and write it to the specified
   # filename. The function has no dependencies and no build steps so this

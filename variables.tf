@@ -11,6 +11,12 @@ variable "log_group_name" {
   type = string
 }
 
+variable "memory_size" {
+  description = "Memory size for Lambda function"
+  type        = number
+  default     = null
+}
+
 variable "create_alarm" {
   type    = bool
   default = false
