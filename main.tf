@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "lambda" {
     resources = ["arn:aws:s3:::${var.bucket_name}/*"]
   }
   statement {
-    actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
+    actions   = ["logs:CreateLogStream", "logs:DeleteLogStream", "logs:PutLogEvents"]
     effect    = "Allow"
     resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:${var.log_group_name}:log-stream:*"]
   }
