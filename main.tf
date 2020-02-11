@@ -10,6 +10,7 @@ module "lambda" {
   handler       = "lambda.handler"
   runtime       = "python3.7"
   memory_size   = var.memory_size
+  timeout       = var.timeout
 
   # Build the package from the source directory and write it to the specified
   # filename. The function has no dependencies and no build steps so this

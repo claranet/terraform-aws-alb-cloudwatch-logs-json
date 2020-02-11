@@ -17,6 +17,12 @@ variable "memory_size" {
   default     = null
 }
 
+variable "timeout" {
+  description = "Timeout for Lambda function"
+  type        = number
+  default     = null
+}
+
 variable "create_alarm" {
   type    = bool
   default = false
