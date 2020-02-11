@@ -231,11 +231,20 @@ def handler(event, context):
         log_stream = LogStream(f"{bucket}/{key}")
         log_stream.truncate()
 
-        for entry in read_log_entries(bucket, key):
+        # Logs must be added to CloudWatch in chronological order.
+        # Entries in the S3 log file are sometimes out of order.
+        # So create a list with every log entry and sort them
+        # before pushing them to CloudWatch.
 
+        parsed_entries = []
+        for entry in read_log_entries(bucket, key):
             message = json.dumps(entry)
             timestamp = int(parse_iso8601(entry["timestamp"]).timestamp() * 1000)
+            parsed_entries.append((timestamp, message))
 
+        parsed_entries.sort()
+
+        for (timestamp, message) in parsed_entries:
             try:
                 log_stream.write(message, timestamp)
             except Full:
