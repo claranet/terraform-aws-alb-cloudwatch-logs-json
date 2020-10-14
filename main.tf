@@ -4,7 +4,7 @@ data "aws_region" "current" {}
 
 module "lambda" {
   source  = "raymondbutcher/lambda-builder/aws"
-  version = "0.0.6"
+  version = "1.1.0"
 
   function_name = coalesce(var.function_name, "${var.bucket_name}-to-cloudwatch-logs")
   handler       = "lambda.handler"
