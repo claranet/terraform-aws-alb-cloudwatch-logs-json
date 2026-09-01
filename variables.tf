@@ -37,3 +37,9 @@ variable "ok_actions" {
   type    = list(string)
   default = []
 }
+
+variable "runtime" {
+  description = "The identifier of the function's runtime."
+  type        = string
+  default     = "python3.7"
+}
